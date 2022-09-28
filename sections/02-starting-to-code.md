@@ -3,7 +3,8 @@
 1. [Paquetes](#Paquetes)
 2. [Variables](#Variables)
 3. [Tipos Básicos](#Tipos-Básicos)
-3. [Funciones](#Funciones)
+4. [Valores cero](#valores-cero)
+7. [Funciones](#Funciones)
 
 ---
 ## Paquetes 
@@ -101,6 +102,50 @@ func main() {
 ~~~
 
 ---
+## Tipos Básicos
+- `bool` Para booleanos con `true` y `false`
+- `string` Para cadena de caracteres 
+- `int` Para números enteros 32-bit o 64-bits
+	- int8 
+	- int16
+	- int32
+	- int64 
+- `uint` Para números enteros postivos 
+	- uint8
+	- uint16
+	- uint32
+	- uint64
+- `byte` que alias para `uint8`
+- `rune` que es alias int32
+- `float32` y `float64` para números flotantes con punto decimal
+- `complex64` y `complex128` para números complejos
+
+
+~~~go
+	option, name, a, b, c, d := true, "Alex", -27, 45, 4.5, cmplx.Sqrt(-5+12i)
+
+	fmt.Printf("Tipo %T valor %v\n", option, option)
+	fmt.Printf("Tipo %T valor %v\n", name, name)
+	fmt.Printf("Tipo %T valor %v\n", a, a)
+	fmt.Printf("Tipo %T valor %v\n", b, b)
+	fmt.Printf("Tipo %T valor %v\n", c, c)
+	fmt.Printf("Tipo %T valor %v\n", d, d)
+~~~
+
+---
+## Valores cero
+Las variables declaradas sin un valor inicial explícito reciben su valor cero .
+
+~~~go
+	var (
+		option bool
+		name   string
+		a      int
+		b      uint
+		c      float32
+	)
+	fmt.Printf("%v %q %v %v %v\n", option, name, a, b, c)
+~~~
 ---
 ## Funciones 
 - Una función contiene un bloque de código que se ejecuta solo cuando llamas la función.

@@ -1,16 +1,17 @@
 package main
 
-import "fmt"
-
-//Variables a nivel del paquete
-var a, b = 10, 20
+import (
+	"fmt"
+	"math/cmplx"
+)
 
 func main() {
+	option, name, a, b, c, d := true, "Alex", -27, 45, 4.5, cmplx.Sqrt(-5+12i)
 
-	//Variable a nivel de función
-	var name = "Alex Roel"
-
-	fmt.Println("Valor de a: ", a)
-	fmt.Println("Valor de b: ", b)
-	fmt.Println("Nombre: ", name)
+	fmt.Printf("Tipo %T valor %v\n", option, option)
+	fmt.Printf("Tipo %T valor %v\n", name, name)
+	fmt.Printf("Tipo %T valor %v\n", a, a)
+	fmt.Printf("Tipo %T valor %v\n", b, b)
+	fmt.Printf("Tipo %T valor %v\n", c, c)
+	fmt.Printf("Tipo %T valor %v\n", d, d)
 }
