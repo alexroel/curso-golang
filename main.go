@@ -1,17 +1,17 @@
 package main
 
-import (
-	"fmt"
-	"math/cmplx"
+import "fmt"
+
+const (
+	a = 10
+	b = 20
 )
 
 func main() {
-	option, name, a, b, c, d := true, "Alex", -27, 45, 4.5, cmplx.Sqrt(-5+12i)
+	const pi = 3.1415
 
-	fmt.Printf("Tipo %T valor %v\n", option, option)
-	fmt.Printf("Tipo %T valor %v\n", name, name)
-	fmt.Printf("Tipo %T valor %v\n", a, a)
-	fmt.Printf("Tipo %T valor %v\n", b, b)
-	fmt.Printf("Tipo %T valor %v\n", c, c)
-	fmt.Printf("Tipo %T valor %v\n", d, d)
+	fmt.Println("Valor de PI: ", pi)
+
+	fmt.Println("Valor de a: ", a)
+	fmt.Println("Valor de b: ", b)
 }

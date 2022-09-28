@@ -4,7 +4,8 @@
 2. [Variables](#Variables)
 3. [Tipos Básicos](#Tipos-Básicos)
 4. [Valores cero](#valores-cero)
-7. [Funciones](#Funciones)
+5. [Constantes](#Constantes)
+6. [Funciones](#Funciones)
 
 ---
 ## Paquetes 
@@ -145,6 +146,29 @@ Las variables declaradas sin un valor inicial explícito reciben su valor cero .
 		c      float32
 	)
 	fmt.Printf("%v %q %v %v %v\n", option, name, a, b, c)
+~~~
+
+---
+## Constantes
+- Los constantes no se puede modificar su valor
+- Las constantes se declaran como variables, pero con la palabra clave `cosnt`.
+- Las constantes pueden ser caracteres, cadenas, booleanos o valores numéricos.
+- Las constantes no se pueden declarar usando la :=sintaxis.
+
+~~~go
+const (
+	a = 10
+	b = 20
+)
+
+func main() {
+	const pi = 3.1415
+
+	fmt.Println("Valor de PI: ", pi)
+
+	fmt.Println("Valor de a: ", a)
+	fmt.Println("Valor de b: ", b)
+}
 ~~~
 ---
 ## Funciones 
