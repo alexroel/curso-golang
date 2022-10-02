@@ -4,8 +4,9 @@
 2. [Variables](#Variables)
 3. [Tipos Básicos](#Tipos-Básicos)
 4. [Valores cero](#valores-cero)
-5. [Constantes](#Constantes)
-6. [Funciones](#Funciones)
+5. [Funciones](#Funciones)
+6. [Constantes](#Constantes)
+7. [Operadores](#Operadores)
 
 ---
 ## Paquetes 
@@ -149,28 +150,6 @@ Las variables declaradas sin un valor inicial explícito reciben su valor cero .
 ~~~
 
 ---
-## Constantes
-- Los constantes no se puede modificar su valor
-- Las constantes se declaran como variables, pero con la palabra clave `cosnt`.
-- Las constantes pueden ser caracteres, cadenas, booleanos o valores numéricos.
-- Las constantes no se pueden declarar usando la :=sintaxis.
-
-~~~go
-const (
-	a = 10
-	b = 20
-)
-
-func main() {
-	const pi = 3.1415
-
-	fmt.Println("Valor de PI: ", pi)
-
-	fmt.Println("Valor de a: ", a)
-	fmt.Println("Valor de b: ", b)
-}
-~~~
----
 ## Funciones 
 - Una función contiene un bloque de código que se ejecuta solo cuando llamas la función.
 - Una funioón puede ejecutar el bloque de código que tenga y devolver un valor. 
@@ -194,4 +173,87 @@ func main() {
 	fmt.Println("La suma es: ", sum(40, 50))
 }
 ~~~
+
+---
+## Constantes
+- Los constantes no se puede modificar su valor
+- Las constantes se declaran como variables, pero con la palabra clave `cosnt`.
+- Las constantes pueden ser caracteres, cadenas, booleanos o valores numéricos.
+- Las constantes no se pueden declarar usando la :=sintaxis.
+
+~~~go
+const (
+	a = 10
+	b = 20
+)
+
+func main() {
+	const pi = 3.1415
+
+	fmt.Println("Valor de PI: ", pi)
+
+	fmt.Println("Valor de a: ", a)
+	fmt.Println("Valor de b: ", b)
+}
+~~~
+
+---
+## Operadores
+Los operadores no van ayudar a manipular los datos, realizar logicas de programación entre otros. 
+
+### Operadores aritméticos
+Los operadores aritméticos nos permiten realizar operaciones básicas sobre nuestras variables y constantes.
+
+- `+`: Realiza una suma de dos valores o tambien puede concatenar caracteres 
+- `-`: Realiza un resta 
+- `*`: Realiza una multioplicación 
+- `/`: Realiza una división 
+- `%`: Devuelve el resto de una división 
+- `++`: Operador de incremento. Incrementa en 1 el operador de la izquierda. No permite el decremento prefijo (pre-decremento).
+- `--`: Operador de decremento. Decrementa en 1 el operador de la izquierda, es decir, no permite el decremento prefijo.
+
+### Operadores de asignación
+Los operadores de asignación nos permiten modificar el valor de variables a lo largo de la ejecución de nuestro programa.
+
+- `+=`: Suma en esignación 
+- `-=`: Resta en asignación 
+- `*=`: Multiplicación en asignación 
+- `/=`: División en asignación 
+- `%=`: Modulo en asignación 
+
+
+### Operadores relacionales
+Los operadores relacionales son aquellos que devuelven un valor de verdad (verdadero o falso) cuando se resuelve una expresión:
+
+- `==`: Devuelve un valor booleano dependiendo si son iguales o no. 
+- `!=`: Devuelve un valor booleano dependiendo si son distintos o no. 
+- `>` : Devuelve verdadero cuando el operando de la izquierda es mayor que el de la derecha.
+- `<`: Devuelve verdadero cuando el operando de la izquierda es menor que el de la derecha.
+- `>=` : Devuelve verdadero cuando el operador de la izquierda es mayor o igual al de la derecha.
+- `<=`: Devuelve verdadero cuando el operador de izquierda es menor o igual a el de la derecha.
+
+### Operadores lógicos
+- `&&`: Operador lógico de conjunción (AND). Compara dos valores `bool` o expresiones relacionales y devuelve `true` cuando ambos son `true`. 
+- `||`: perador lógico de disyunción (OR). Compara dos valores `bool` o expresiones relacionales y devuelve `true` cuando uno de ellos es `true`.
+- `!`: Operador de negación. Invierte (niega) el valor `bool` del operando.
+
+### Expreciones 
+   - Parentesis 
+   - Multiplicación / División 
+   - Suma / Resta 
+   - Operadores relacionales 
+   - Operadores lógicos 
+
+
+   ~~~go
+   	a, b := 10, 5
+
+	result := (a*b-2*b) >= 20 && !((a % b) != 0)
+	// a*b-2*b -> 50 - 10 = 40
+	//a % b -> 0
+	// 0 != 0 -> false -> true 
+	// (a*b-2*b) >= 20 => true 
+
+	fmt.Println("Resultado: ", result)
+   ~~~
 

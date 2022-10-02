@@ -2,16 +2,10 @@ package main
 
 import "fmt"
 
-const (
-	a = 10
-	b = 20
-)
-
 func main() {
-	const pi = 3.1415
+	a, b := 10, 5
 
-	fmt.Println("Valor de PI: ", pi)
+	result := (a*b-2*b) >= 20 && !((a % b) != 0)
 
-	fmt.Println("Valor de a: ", a)
-	fmt.Println("Valor de b: ", b)
+	fmt.Println("Resultado: ", result)
 }
