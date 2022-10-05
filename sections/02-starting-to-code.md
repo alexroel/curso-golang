@@ -29,12 +29,36 @@ func main() {
 
 	fmt.Println("Valor de PI: ", math.Pi)
 	fmt.Println("Valor de 4^2: ", math.Pow(4, 2))
+}
+~~~
 
+### Genera números aleatorios
+Para generar números  aleatorios utilizares mas paquetes de Go.
+
+- `math/rand`: El paquete rand implementa generadores de números pseudoaleatorios inadecuados para trabajos sensibles a la seguridad.
+- `time`: El paquete proporciona funcionalidad para medir y mostrar el tiempo.
+
+~~~go
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func main() {
 	//Generar numero aleatorio
 	rand.Seed(time.Now().UnixNano())
 	fmt.Println(rand.Intn(101))
 }
 ~~~
+- `rand.Intn(101)`: Devuelve, como int, un número pseudoaleatorio no negativo en el intervalo semiabierto [0,n) del origen predeterminado.
+- `rand.Seed()`: Se utiliza el valor de `Seed()` proporcionado para inicializar el origen predeterminado a un estado determinista. Si no se llama `Seed()`, el generador se comporta como si fuera sembrado por `Seed(1)`. 
+
+- `time.Now()`: Devuelve la hora local actual.
+- `UnixNano()`: Devuelve tiempo como un tiempo Unix, el número de nanosegundos transcurridos desde el 1 de enero de 1970 UTC.
+
 
 ---
 ## Variables
@@ -63,6 +87,7 @@ func main() {
 	fmt.Println("Valor de b: ", b)
 	fmt.Println("Nombre: ", name)
 }
+
 ~~~
 
 ### Variables inicializadas 
@@ -102,6 +127,8 @@ func main() {
 	fmt.Println("Nombre: ", name)
 }
 ~~~
+
+
 
 ---
 ## Tipos Básicos

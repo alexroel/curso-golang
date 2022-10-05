@@ -1,11 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 func main() {
-	a, b := 10, 5
+	//Generar numero aleatorio
+	rand.Seed(time.Now().UnixNano())
+	randomNumber := rand.Intn(101)
 
-	result := (a*b-2*b) >= 20 && !((a % b) != 0)
-
-	fmt.Println("Resultado: ", result)
+	fmt.Println(randomNumber)
 }
