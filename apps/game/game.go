@@ -37,16 +37,16 @@ func play(lives int) {
 
 		//Encontrando el número
 		if randomNumber < chosenNumber {
-			fmt.Println("El número es mas pequeño")
+			fmt.Println("► El número es mas pequeño")
 			lives-- //Quita una vida por intento
 		} else if randomNumber > chosenNumber {
-			fmt.Println("El número es mas grande")
+			fmt.Println("► El número es mas grande")
 			lives-- //Quita una vida por intento
 		}
 
 		if lives == 0 {
 			fmt.Println("-------------------------------")
-			fmt.Println("|         GAME OVER           |")
+			fmt.Println("|        ☺ GAME OVER ☺         |")
 			fmt.Println("-------------------------------")
 			break
 		}
@@ -56,21 +56,22 @@ func play(lives int) {
 	// Comprobando si ganaste el juego
 	if chosenNumber == randomNumber {
 		fmt.Println("-------------------------------")
-		fmt.Println("|      Ganaste el juego        |")
+		fmt.Println("|     ☻ Ganaste el juego ☻    |")
 		fmt.Println("-------------------------------")
 	}
 }
 
 func main() {
 	for {
-		fmt.Println("Juego adivina un núemo  \n",
+		fmt.Println("--------------------------------\n",
+			"     Juego adivina un número\n",
 			"--------------------------------\n",
 			"1- Nivel Facil \n",
 			"2- Nivel Intermedio \n",
 			"3- Nivel Dificil\n",
 			"4- Salir del juego")
 
-		fmt.Print("Ingrese una Opción: ")
+		fmt.Print("► Ingrese una Opción: ")
 		var option int
 		fmt.Scanln(&option)
 
@@ -81,10 +82,10 @@ func main() {
 		} else if option == 3 {
 			play(5)
 		} else if option == 4 {
-			fmt.Println("Cerrando juego")
+			fmt.Println("► Cerrando juego")
 			break
 		} else {
-			fmt.Println("Opción incorrecta")
+			fmt.Println("► Opción incorrecta")
 		}
 	}
 }
