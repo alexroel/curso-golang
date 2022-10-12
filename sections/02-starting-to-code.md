@@ -4,9 +4,8 @@
 2. [Variables](#Variables)
 3. [Tipos Básicos](#Tipos-Básicos)
 4. [Valores cero](#valores-cero)
-5. [Funciones](#Funciones)
-6. [Constantes](#Constantes)
-7. [Operadores](#Operadores)
+5. [Constantes](#Constantes)
+6. [Operadores](#Operadores)
  
 ---
 ## Paquetes
@@ -173,31 +172,7 @@ Las variables declaradas sin un valor inicial explícito reciben su valor cero .
     )
     fmt.Printf("%v %q %v %v %v\n", option, name, a, b, c)
 ~~~
- 
----
-## Funciones
-- Una función contiene un bloque de código que se ejecuta solo cuando llamas la función.
-- Una función puede ejecutar el bloque de código que tenga y devolver un valor.
-- Una función puede tomar cero o más argumentos.
-- Observe que el tipo viene después del nombre de la variable.
- 
-~~~go
-//Creando mis funciones
-func play(name string) {
-    //fmt.Println("Hola desde la función")
-    fmt.Println("Hola ", name, "esta jugando")
-}
- 
-func sum(a, b int) int {
-    return a + b
-}
- 
-func main() {
-    //llmar una función
-    play("Alex")
-    fmt.Println("La suma es: ", sum(40, 50))
-}
-~~~
+
  
 ---
 ## Constantes

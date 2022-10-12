@@ -46,7 +46,7 @@ func play(lives int) {
 
 		if lives == 0 {
 			fmt.Println("-------------------------------")
-			fmt.Println("|        ☺ GAME OVER ☺         |")
+			fmt.Println("|        ☺ GAME OVER ☺         |") //Alt + 1
 			fmt.Println("-------------------------------")
 			break
 		}
@@ -56,7 +56,7 @@ func play(lives int) {
 	// Comprobando si ganaste el juego
 	if chosenNumber == randomNumber {
 		fmt.Println("-------------------------------")
-		fmt.Println("|     ☻ Ganaste el juego ☻    |")
+		fmt.Println("|     ☻ Ganaste el juego ☻    |") //Alt + 2
 		fmt.Println("-------------------------------")
 	}
 }
@@ -71,7 +71,7 @@ func main() {
 			"3- Nivel Dificil\n",
 			"4- Salir del juego")
 
-		fmt.Print("► Ingrese una Opción: ")
+		fmt.Print("► Ingrese una Opción: ") // Alt + 16
 		var option int
 		fmt.Scanln(&option)
 
