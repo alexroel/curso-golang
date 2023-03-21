@@ -1,7 +1,7 @@
 # Entrada y salida en la consola
 
-1. [Salida por consolo](#Salida-por-consolo)
-2. [Entrada por consola](#Entrada-por-consola )
+1. [Entrada por consola](#Entrada-por-consola)
+2. [Salida por consolo](#Salida-por-consolo)
 3. [Formater datosr](#Formater-datos)
 4. [Entrada datos en el juego](#Entrada-datos-en-el-juego)
 
@@ -40,6 +40,28 @@ Ejemplo:
 
 --- 
 ## Entrada por consola 
+
+En Go, la entrada por consola se puede realizar utilizando la función fmt.Scan() o fmt.Scanln(), que se encuentran en el paquete fmt. Ambas funciones permiten al usuario ingresar valores desde la consola y almacenarlos en variables.
+
+La función fmt.Scan() o fmt.Scanln() se utiliza para leer un solo valor de la entrada estándar y espera que el usuario presione la tecla Enter para finalizar la entrada. Por ejemplo, para leer un entero desde la entrada estándar y almacenarlo en una variable llamada num, se puede utilizar el siguiente código:
+
+~~~go
+var name1, name2 string
+
+fmt.Print("Ingrese su nombre: ")
+fmt.Scanln(&name1, &name2)
+
+fmt.Println("Datos de usuario")
+fmt.Printf("Nombre: %s %s\n", name1, name2)
+~~~
+
+La función fmt.Scanln() se utiliza para leer una línea completa de la entrada estándar. A diferencia de fmt.Scan(), esta función lee todos los valores ingresados en la línea y los almacena en las variables proporcionadas. Por ejemplo, para leer una línea completa de la entrada estándar y almacenarla en una variable llamada texto, se puede utilizar el siguiente código:
+
+go
+Copy code
+var texto string
+fmt.Scanln(&texto)
+Además de estas dos funciones, Go también proporciona otras funciones para leer datos de la entrada estándar, como fmt.Scanf() y bufio.Scanner(), que permiten una lectura más avanzada de los datos ingresados por el usuario.
 
 Para ingresar datos por la consola podemos utilzar dunciones del paquete `fmt`.
 

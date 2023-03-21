@@ -1,5 +1,10 @@
 # Aprende Go: La guía completa para desarrolladores (Golang)
 
+## Temario para el curso 
+1. Primeros pasos con Go
+2. Variables y datos 
+3. Control de flujos
+
 ¡Bienvenido a nuestro curso Go ! Go es un lenguaje de programación de código abierto que facilita la creación de software simple , confiable y eficiente . Go fue diseñado en Google en 2007 para mejorar la productividad de la programación en una era de múltiples núcleos, máquinas en red y grandes bases de código.
 
 ## Requisitos para el curso
