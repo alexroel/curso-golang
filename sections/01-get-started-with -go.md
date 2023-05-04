@@ -155,9 +155,9 @@ import "rsc.io/quote"
 func main() {
     fmt.Println(quote.Hello())
 }
+~~~
 
 `rsc.io/quote` también proporciona otras funciones para imprimir citas famosas, como `Go() `para imprimir una cita relacionada con el lenguaje de programación Go, o `Opt()` para imprimir una cita optimista. Puedes consultar la documentación del paquete para obtener más información sobre estas funciones y cómo utilizarlas.
-~~~
 
 ---
 ## Resumen 
