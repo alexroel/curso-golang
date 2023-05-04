@@ -1,4 +1,4 @@
-# Variables y datos 
+# Usu de variables, funciones y paquetes
  
 1. [Variables](#Variables)
 2. [Tipos de datos](#Variables)
