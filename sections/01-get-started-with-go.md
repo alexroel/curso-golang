@@ -172,6 +172,5 @@ En resumen, en esta sección se cubrieron los siguientes temas:
 
 En conjunto, estos temas proporcionan una introducción útil al desarrollo de aplicaciones en Go y permiten a los programadores comenzar a escribir y ejecutar programas en Go en su propia computadora.
 
- 
 
  
