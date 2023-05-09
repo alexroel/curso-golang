@@ -61,7 +61,7 @@ var a = [5]int{10, 20, 30, 40, 50}
 
 
 ### Puntos suspensivos en matrices
-Otra forma de declarar e inicializar una matriz cuando no se sabe cuántas posiciones se van a necesitar, pero sí cuál es el conjunto de elementos de datos, es usar puntos suspensivos (...), como en este ejemplo:
+Otra forma de declarar e inicializar una matriz cuando no se sabe cuántas posiciones se van a necesitar, pero sí cuál es el conjunto de elementos de datos, es usar puntos suspensivos `(...)`, como en este ejemplo:
 ~~~go
 a := [...]int{10, 20, 30, 40, 50}
 ~~~
@@ -327,7 +327,7 @@ Para definir un método en Go, se sigue la siguiente sintaxis:
 
 ~~~go
 func (p *Persona) DiHola() {
-    fmt.Println("Hola, mi nombre es", p.Name)
+    fmt.Println("Hola, mi nombre es", p.Nombre)
 }
 ~~~
 
@@ -347,72 +347,6 @@ Los punteros son particularmente útiles al trabajar con métodos porque permite
 En resumen, los punteros son esenciales en Go para trabajar con estructuras de datos complejas y para permitir que los métodos modifiquen directamente la variable original. Los métodos con punteros como receptores pueden ser particularmente útiles para modificar variables en lugar de hacer copias y para trabajar con estructuras de datos complejas como slices y maps.
 
 ---
-## Intefaces
-En Go, una interfaz es un tipo de dato abstracto que define un conjunto de métodos. Una interfaz describe un comportamiento que un tipo puede tener, pero no define cómo se implementa. Los métodos de una interfaz no tienen cuerpo, solo tienen la firma de la función.
-
-Una interfaz se define mediante la palabra clave "interface" seguida de un conjunto de métodos que describe. Por ejemplo:
-
-~~~go
-type Animal interface {
-    Comer()
-    Mover()
-    Hablar()
-}
-~~~
-
-En este ejemplo, hemos definido una interfaz llamada "Animal" que describe tres métodos: Eat(), Move() y Speak(). Cualquier tipo que implemente estos tres métodos será considerado un Animal.
-
-Para implementar una interfaz, un tipo debe proporcionar implementaciones para cada uno de los métodos de la interfaz. Por ejemplo:
-
-~~~ go
-type Perro struct {
-    Nombre string
-}
-
-func (d *Perro) Comer() {
-    fmt.Println(d.Name, "está comiendo")
-}
-
-func (d *Perro) Mover() {
-    fmt.Println(d.Name, "se esta moviendo")
-}
-
-func (d *Perro) Hablar() {
-    fmt.Println(d.Name, "está ladrando")
-}
-~~~
-
-~~~ go
-type Gato struct {
-    Nombre string
-}
-
-func (d *Gato) Comer() {
-    fmt.Println(d.Name, "está comiendo")
-}
-
-func (d *Gato) Mover() {
-    fmt.Println(d.Name, "se esta moviendo")
-}
-
-func (d *Gato) Hablar() {
-    fmt.Println(d.Name, "está maúllando")
-}
-~~~
-En este ejemplo, hemos definido un tipo llamado "Dog" que implementa la interfaz "Animal" proporcionando implementaciones para los métodos Eat(), Move() y Speak().
-
-Las interfaces son útiles porque permiten al código trabajar con diferentes tipos de manera genérica. Por ejemplo, supongamos que tenemos una función que espera un parámetro de tipo Animal:
-
-~~~go
-func HacerAlgo(a Animal) {
-    a.Comer()
-    a.Mover()
-    a.SpeHablarak()
-}
-~~~
-Cualquier tipo que implemente la interfaz "Animal" puede ser pasado a esta función y funcionará correctamente. Esto significa que podemos escribir código genérico que funciona con cualquier tipo que implemente una interfaz específica.
-
-En resumen, las interfaces son un mecanismo poderoso en Go que permite al código trabajar con diferentes tipos de manera genérica.
 
 ---
 ## Proyecto de la sección
