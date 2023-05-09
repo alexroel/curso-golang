@@ -7,7 +7,7 @@
 5. [Bucle For](#Bucle-For)
 6. [Uso de funciones](#uso-de-funciones)
 7. [Proyecto de la sección](#Proyecto-de-la-sección)
-8. [Resumen]()
+8. [Resumen](#resumen)
 
 ---
 ## Introducción

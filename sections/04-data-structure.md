@@ -1,53 +1,78 @@
 # Estructura de datos
 
-1. [Arrays](#Arrays)
-2. [Slices](#Slices)
-3. [Maps](#Maps)
-4. [Estructura](#Estructura)
-5. [Punteros y métodos](#Punteros-y-métodos)
-6. [Intefaces](#Intefaces)
-7. [Proyecto de la sección](#Proyecto-de-la-sección)
+1. [Introducción](#introducción)
+2. [Matrices](#matrices)
+3. [Rebanadas](#rebanadas)
+4. [Mapas](#mapas)
+5. [Estructura](#estructura)
+6. [Punteros y métodos](#punteros-y-métodos)
+7. [Intefaces](#intefaces)
+8. [Proyecto de la sección](#proyecto-de-la-sección)
+9. [Resumen](#resumen)
 
 ---
-## Arrays
-En Go, los arrays son una estructura de datos que se utiliza para almacenar un conjunto de elementos del mismo tipo. Se definen con una longitud fija y pueden ser de cualquier tipo de datos, incluidos tipos definidos por el usuario.
+## Introducción 
 
-La sintaxis para definir un array en Go es la siguiente:
+¡Bienvenidos a la sección de Estructura de Datos en el curso de Go! En esta sección, exploraremos una variedad de herramientas y técnicas para manejar datos de manera eficiente y efectiva en programas Go.
+
+Comenzaremos examinando las matrices, que son colecciones de elementos del mismo tipo que se almacenan en una estructura de datos rectangular. A continuación, estudiaremos los segmentos, que son subconjuntos de una matriz y se utilizan a menudo para manipular partes específicas de una estructura de datos.
+
+Continuaremos con los mapas, que son estructuras de datos más complejas que permiten almacenar y recuperar valores asociados a claves específicas. A continuación, examinaremos las estructuras, que son una forma de agrupar diferentes tipos de datos en una sola unidad lógica.
+
+Además, exploraremos los punteros y los métodos, que son herramientas poderosas para trabajar con datos en Go. Los punteros permiten acceder y manipular directamente la memoria de una computadora, mientras que los métodos son funciones asociadas a un tipo de datos específico que pueden realizar operaciones sobre ese tipo de datos.
+
+Por último, estudiaremos las interfaces, que son una forma de definir comportamientos que deben cumplir diferentes tipos de datos en un programa. Las interfaces permiten escribir código que es más genérico y reutilizable, lo que puede simplificar significativamente el proceso de desarrollo de software.
+
+¡Prepárense para sumergirse en el emocionante mundo de la estructura de datos en Go!
+
+---
+## Matrices 
+Las matrices de Go son una estructura de datos que se utiliza para almacenar un conjunto de elementos del mismo tipo. Se definen con una longitud fija y pueden ser de cualquier tipo de datos, incluidos tipos definidos por el usuario.
+
+### Declaración de matrices
+En Go, se pueden declarar matrices utilizando la siguiente sintaxis:
 
 ~~~go
-var nombre [longitud]tipo
+var matriz [numeroElementos]tipoDato
 ~~~
 Donde nombre es el nombre del array, longitud es el número de elementos que contendrá el array y tipo es el tipo de datos que contendrán los elementos del array.
 
 Por ejemplo, para crear un array de enteros con 5 elementos, se puede escribir:
 
 ~~~go
-var miArray [5]int
+var a [5]int
 ~~~
 Para asignar valores a los elementos del array, se puede utilizar la siguiente sintaxis:
 
 ~~~go
-miArray[0] = 10
-miArray[1] = 20
-miArray[2] = 30
-miArray[3] = 40
-miArray[4] = 50
+a[0] = 10
+a[1] = 20
+a[2] = 30
+a[3] = 40
+a[4] = 50
 ~~~
 
+### Inicialización de matrices
 También es posible inicializar un array con valores en la misma línea en la que se define:
 
 ~~~go
-var miArray = [5]int{10, 20, 30, 40, 50}
+var a = [5]int{10, 20, 30, 40, 50}
 ~~~
 
+
+### Puntos suspensivos en matrices
+Otra forma de declarar e inicializar una matriz cuando no se sabe cuántas posiciones se van a necesitar, pero sí cuál es el conjunto de elementos de datos, es usar puntos suspensivos (...), como en este ejemplo:
+~~~go
+a := [...]int{10, 20, 30, 40, 50}
+~~~
+
+### Acceder a los elementos 
 Para acceder a los elementos de un array, se utiliza la siguiente sintaxis:
-
-~~~	
-valor := miArray[indice]
+~~~go	
+valor := matriz[indice]
 ~~~
 
-Donde indice es el número del elemento al que se quiere acceder. El primer elemento tiene un índice de 0.
-
+### Iterando matriz con for
 Los arrays también se pueden utilizar en combinación con bucles para realizar operaciones en todos sus elementos. Por ejemplo:
 
 ~~~go
@@ -58,13 +83,37 @@ for i := 0; i < len(miArray); i++ {
 
 Este bucle imprimirá todos los elementos del array en la consola.
 
-En resumen, los arrays en Go son una estructura de datos útil para almacenar conjuntos de elementos del mismo tipo con una longitud fija. Se pueden inicializar con valores y se accede a sus elementos utilizando índices.
+### Matrices multidimensionales
+Go admite las matrices multidimensionales cuando se necesita trabajar con estructuras de datos complejas. Vamos a crear un programa en el que se declare e inicialice una matriz bidimensional. Use el código siguiente:
+
+En Go, se pueden declarar matrices utilizando la siguiente sintaxis:
+~~~go
+var matriz [numeroFilas][numeroColumnas]tipoDato
+~~~
+Por ejemplo, para declarar una matriz de enteros de 3x5, se puede escribir:
+~~~go 
+package main
+
+import "fmt"
+
+func main() {
+    var matriz = [3][3]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
+    for i := 0; i < 3; i++ {
+        for j := 0; j < 3; j++ {
+            twoD[i][j] = (i + 1) * (j + 1)
+        }
+        fmt.Println("Row", i, twoD[i])
+    }
+    fmt.Println("\nAll at once:", twoD)
+}
+~~~
 
 ---
-## Slices
-En Go, los slices son estructuras de datos que permiten almacenar y manipular secuencias de elementos de cualquier tipo de datos. A diferencia de los arrays, los slices no tienen una longitud fija y pueden crecer y reducir su tamaño dinámicamente durante la ejecución del programa.
+## Rebanadas
+En Go, una "rebanada" o "slice" es un tipo de datos que representa una sección contigua de un arreglo. Las rebanadas proporcionan una forma conveniente y flexible de trabajar con partes de un arreglo, ya que permiten acceder a elementos específicos del arreglo y también permiten agregar o eliminar elementos de manera dinámica.
 
-La sintaxis para definir un slice es similar a la de un array, pero sin especificar la longitud:
+### Declaración e inicialización de una rebanada 
+La declaración de un segmento se hace lo mismo que la de una matriz. Por ejemplo, el código siguiente representa lo que ha visto en la imagen del segmento:
 
 ~~~go
 var nombre []tipo
@@ -73,38 +122,79 @@ var nombre []tipo
 Por ejemplo, para crear un slice de enteros, se puede escribir:
 
 ~~~go
-var miSlice []int
+var miRebanada []int
+//Declaraciín e incializacion de una rebanada
+diasSemana := []string{"Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"}
+
+// Crear una rebanada apartir de otra
+diasRebanada := diasSemana[0:5]
+diasRebanada:= diasSemana[0:5]
+
+//Motrar tambien la longitud y la capacidad
+fmt.Println(diasRebanada)
+fmt.Println("Longitud: ", len(diasRebanada))
+fmt.Println("Capacidad: ", cap(diasRebanada))
 ~~~
+
+### Anexión de elementos
+En Go, ``append()`` es una función predefinida que se utiliza para agregar uno o más elementos al final de una rebanada. La función toma como argumentos una o más rebanadas seguidas de los elementos que se desean agregar.
+
+La función `append()` devuelve una nueva rebanada que contiene todos los elementos de la rebanada original, así como los nuevos elementos agregados al final. Si la capacidad de la rebanada original no es suficiente para almacenar todos los elementos, `append()` creará una nueva rebanada con capacidad suficiente y copiará todos los elementos de la rebanada original a la nueva rebanada antes de agregar los nuevos elementos.
+
 Para asignar valores a un slice, se utiliza la siguiente sintaxis:
 
 ~~~go
-miSlice = append(miSlice, 10)
-miSlice = append(miSlice, 20)
-miSlice = append(miSlice, 30)
+	// Agregar datos
+	diasRebanada = append(diasRebanada, "Jueves")
+	diasRebanada = append(diasRebanada, "Viernes")
+	fmt.Println(diasRebanada)
 ~~~
-La función `append()` se utiliza para agregar elementos al final del slice. También es posible inicializar un slice con valores en la misma línea en la que se define:
+
+### Quitar elementos
+En Go, se puede quitar elementos de una rebanada utilizando el operador de corte `([:])` y la función ``append()``.
+
+El operador de corte se utiliza para seleccionar una porción de una rebanada. La sintaxis general es `rebanada[inicio:fin]`, donde inicio es el índice del primer elemento que se desea incluir y fin es el índice del primer elemento que se desea excluir. Si se omite inicio, se utilizará el valor 0 como valor predeterminado. Si se omite fin, se utilizará el valor `len(rebanada)` como valor predeterminado.
+
+Para quitar elementos de una rebanada, se puede utilizar el operador de corte para seleccionar los elementos que se desean mantener y luego asignar el resultado a la rebanada original. Alternativamente, se puede utilizar la función `append()` para crear una nueva rebanada que contenga solo los elementos que se desean mantener.
 
 ~~~go
-var miSlice = []int{10, 20, 30}
+	// Quitar elementos
+	diasRebanada = append(diasRebanada[:2], diasRebanada[3:]...)
+	fmt.Println(diasRebanada)
 ~~~
-Para acceder a los elementos de un slice, se utiliza la misma sintaxis que para los arrays:
+
+### Funciones Make y Copy 
+
+En Go, las funciones `make()` y `copy()` se utilizan para trabajar con rebanadas.
+
+La función `make()` se utiliza para crear una nueva rebanada con una longitud y capacidad especificadas. La sintaxis de `make()` es la siguiente: `make([]Tipo, longitud, capacidad)`, donde Tipo es el tipo de elementos que se almacenarán en la rebanada, longitud es el número de elementos que inicialmente tendrá la rebanada, y capacidad es el número máximo de elementos que la rebanada puede contener. La capacidad puede ser mayor o igual a la longitud. Si se omite la capacidad, se utilizará la longitud como valor predeterminado.
+
+Aquí hay un ejemplo que muestra cómo utilizar la función `make()` para crear una nueva rebanada:
 
 ~~~go
-valor := miSlice[indice]
+	// Crear una rebanada con make
+	nombres := make([]string, 5, 10)
+	fmt.Println(nombres)
+	fmt.Println("Longitud: ", len(nombres))
+	fmt.Println("Capacidad: ", cap(nombres))
 ~~~
 
-donde indice es el número del elemento al que se quiere acceder. Los slices también se pueden utilizar en combinación con bucles para realizar operaciones en todos sus elementos.
+La función `copy()` se utiliza para copiar elementos de una rebanada a otra. La sintaxis de c`opy()` es la siguiente: `copy(destino []Tipo, origen []Tipo)`, donde destino es la rebanada de destino y origen es la rebanada de origen. Los elementos de origen se copiarán en destino. La función devuelve el número de elementos que se copiaron.
 
-Los slices también tienen otras funciones útiles, como `len()` para obtener la longitud del slice y `cap()` para obtener la capacidad del slice, que es el número máximo de elementos que puede contener el slice sin necesidad de redimensionarse.
+~~~go
+	rebanada1 := []int{1, 2, 3, 4, 5}
+	rebanada2 := make([]int, 5)
 
-En resumen, los slices en Go son una estructura de datos poderosa y flexible que permite almacenar y manipular secuencias de elementos de cualquier tipo de datos con una longitud variable. Los slices se utilizan comúnmente en lugar de los arrays en Go debido a su capacidad para crecer y reducir su tamaño dinámicamente durante la ejecución del programa.
+	rebanadas := copy(rebanada1, rebanada2)
+	fmt.Println(rebanadas)
+~~~
 
 ---
-## Maps
-En Go, los maps son una estructura de datos que permiten almacenar y recuperar pares clave-valor de manera eficiente. Los maps se definen utilizando la siguiente sintaxis:
+## Mapas
+En Go, los mapas son una estructura de datos que permiten almacenar y recuperar pares clave-valor de manera eficiente. Los mapas se definen utilizando la siguiente sintaxis:
 
 ~~~go
-miMap := make(map[<tipo de clave>]<tipo de valor>)
+map[<tipo de clave>]<tipo de valor>
 ~~~
 
 Donde `<tipo de clave>` es el tipo de datos que se utilizará como clave en el mapa, y `<tipo de valor>` es el tipo de datos que se almacenará como valor en el mapa.
@@ -112,14 +202,21 @@ Donde `<tipo de clave>` es el tipo de datos que se utilizará como clave en el m
 Por ejemplo, para crear un mapa que almacene nombres de colores y sus códigos hexadecimales correspondientes, se podría escribir:
 
 ~~~go
-colores := make(map[string]string)
+	//Declaración e inicialización de una mapa
+	colors := map[string]string{
+		"rojo":   "#FF0000",
+		"verder": "#00FF00",
+		"azul":   "#0000FF",
+	}
+
+	fmt.Println(colors["verde"])
 ~~~
 Luego, se pueden agregar pares clave-valor al mapa utilizando la siguiente sintaxis:
 
 ~~~go
-colores["rojo"] = "#FF0000"
-colores["verde"] = "#00FF00"
-colores["azul"] = "#0000FF"
+	//Agregar nuevo elemento
+	colors["negro"] = "#000000"
+	fmt.Println(colors)
 ~~~
 Para recuperar el valor correspondiente a una clave específica en el mapa, se puede utilizar la siguiente sintaxis:
 
@@ -129,16 +226,26 @@ valor := miMap[clave]
 Por ejemplo, para obtener el código hexadecimal correspondiente al color "rojo" del mapa colores, se puede escribir:
 
 ~~~go
-codigoRojo := colores["rojo"]
+fmt.Println(colors["rojo"])
 ~~~
 También es posible verificar si una clave específica existe en un mapa utilizando la siguiente sintaxis:
 
 ~~~go
-valor, ok := miMap[clave]
-~~~
-En este caso, valor contiene el valor correspondiente a la clave clave, si existe en el mapa, y ok es un valor booleano que indica si la clave existe o no.
+//valor, ok := miMap[clave]
 
-Los maps son una estructura de datos muy útil en Go, ya que permiten almacenar y recuperar datos de manera eficiente utilizando claves que pueden ser de diferentes tipos de datos. Los maps también son muy flexibles y se pueden utilizar en una amplia variedad de aplicaciones, como la creación de índices, el almacenamiento de configuraciones y la implementación de algoritmos de búsqueda y ordenación.
+valor, ok := colors["rojo"]
+if ok {
+    fmt.Println("Rojo en hexadecimal es: ", valor)
+} else {
+    fmt.Println("No existe este clave")
+}
+~~~
+Eliminar un elemento de la siguiente forma:
+
+~~~go
+delete(colors, "negro")
+fmt.Println(colors)
+~~~
 
 ---
 ## Estructura
@@ -433,3 +540,18 @@ func main() {
 
 ~~~ 
 
+---
+## Resumen 
+En esta sección del curso de Go, se cubrieron varios temas importantes de estructuras de datos y su implementación en el lenguaje de programación Go. Se explicó cómo declarar y utilizar matrices en Go, incluyendo la inicialización de matrices y la indexación de elementos en matrices.
+
+También se abordó el tema de las rebanadas, que son una forma flexible y poderosa de trabajar con secciones de matrices y otras estructuras de datos en Go. Se mostró cómo declarar y utilizar rebanadas, así como cómo modificarlas y crear nuevas rebanadas a partir de rebanadas existentes.
+
+Además, se cubrió la estructura de datos de los mapas en Go, que permiten almacenar pares clave-valor y proporcionan una forma rápida y eficiente de buscar valores por su clave. Se explicó cómo declarar y utilizar mapas en Go, así como cómo agregar, acceder y eliminar elementos de los mapas.
+
+Otro tema importante fue la estructura de datos de las estructuras en Go, que permiten agrupar diferentes tipos de datos en una sola entidad. Se mostró cómo declarar y utilizar estructuras en Go, así como cómo acceder y modificar sus campos.
+
+También se cubrió el tema de los punteros y métodos en Go, que permiten trabajar con referencias a memoria y definir funciones que operan en una estructura en particular. Se explicó cómo declarar y utilizar punteros en Go, así como cómo definir y utilizar métodos en Go.
+
+Por último, se abordó el tema de las interfaces en Go, que permiten definir un conjunto de métodos que deben ser implementados por una estructura en particular. Se mostró cómo declarar e implementar interfaces en Go, así como cómo utilizar interfaces para escribir código más genérico y reutilizable.
+
+En el proyecto de la sección, se desarrolló una lista de tareas en Go utilizando varios de los conceptos y estructuras de datos cubiertos en la sección, lo que permitió poner en práctica los conocimientos adquiridos y aplicarlos a un proyecto práctico.
