@@ -2,11 +2,12 @@
  
 1. [Introdución](#introdución)
 2. [¿Qué es y por que usar Go?](#¿qué-es-y-por-que-usar-go)
-3. [Playground de Go](#playground-de-go)
-4. [Instalar y configurar Go](#instalar-y-configurar-go)
-5. [Hola mundo con Go](#hola-mundo-con-go)
-6. [Paquetes de terceros](#paquetes-de-terceros)
-7. [Resumen](#resumen)
+3. [¿Qué necesitamos?](#¿qué-necesitamos)
+4. [Playground de Go](#playground-de-go)
+5. [Instalar y configurar Go](#instalar-y-configurar-go)
+6. [Hola mundo con Go](#hola-mundo-con-go)
+7. [Paquetes de terceros](#paquetes-de-terceros)
+8. [Resumen](#resumen)
  
 ---
 ## Introdución
@@ -37,6 +38,26 @@ Para crear aplicaciones en Go, primero necesitamos escribir nuestro código en u
 
 ### Aplicaciones de Go
 Go se utiliza en una variedad de aplicaciones, desde la creación de servidores web hasta la programación de sistemas operativos. Empresas como Google, Uber y Dropbox utilizan Go para construir sus aplicaciones y servicios. Go también se utiliza para construir herramientas de desarrollo, como el popular sistema de control de versiones Git.
+
+---
+## ¿Qué necesitamos?
+Para aprender y crear aplicaciones con el lenguaje de programación Go, necesitarás los siguientes elementos:
+
+- Conocimientos sobre programación: Aunque Go es conocido por su facilidad de aprendizaje, es útil tener conocimientos básicos de programación. Familiarizarse con conceptos como variables, tipos de datos, estructuras de control (como bucles y condicionales) y funciones te proporcionará una base sólida para aprender Go.
+
+- [Editor de código o texto](https://go.dev/doc/editors): Puedes utilizar cualquier editor de código o texto para programar en Go. Algunos editores populares para trabajar con Go incluyen Visual Studio Code (VSCode), Vim, Emacs y GoLand. Estos editores a menudo tienen complementos o extensiones disponibles que facilitan el desarrollo en Go, como resaltado de sintaxis, autocompletado y depuración.
+
+- Instalación de Go: Debes instalar el lenguaje de programación Go en tu computadora. Puedes descargar la última versión estable de Go desde el sitio web oficial de Go (https://golang.org). Sigue las instrucciones de instalación proporcionadas para tu sistema operativo específico.
+
+- Uso de la terminal: Ser capaz de usar la terminal o línea de comandos es esencial para compilar y ejecutar programas escritos en Go. Debes aprender a navegar por los directorios, ejecutar comandos de compilación y ejecución, y gestionar tu entorno de desarrollo desde la línea de comandos.
+
+Además de estos elementos básicos, también es beneficioso tener acceso a recursos de aprendizaje, como la documentación oficial de Go (https://golang.org/doc/), tutoriales en línea, libros y comunidades de programadores de Go. Estos recursos pueden ayudarte a comprender mejor el lenguaje y sus características, y a resolver dudas o problemas que puedan surgir durante tu aprendizaje.
+
+Además de los elementos mencionados anteriormente, también es útil familiarizarse con Git y GitHub para aprender y crear aplicaciones con Go. Aquí hay una descripción de estos conceptos:
+
+- Git: Git es un sistema de control de versiones distribuido que te permite realizar un seguimiento de los cambios en tu código a lo largo del tiempo. Con Git, puedes crear ramas para trabajar en nuevas características o solucionar problemas sin afectar la versión principal de tu código. También facilita la colaboración en proyectos de desarrollo de software, ya que varios desarrolladores pueden trabajar en paralelo y combinar sus cambios de manera eficiente.
+
+- GitHub: GitHub es una plataforma de alojamiento de repositorios basada en la nube que utiliza Git. Permite a los desarrolladores almacenar y compartir su código fuente, colaborar en proyectos con otros desarrolladores y realizar un seguimiento de los cambios en el código. En GitHub, puedes crear repositorios públicos o privados para tus proyectos y utilizar diversas funciones, como solicitudes de extracción (pull requests) y problemas (issues), para facilitar la colaboración y la comunicación con otros miembros del equipo.
 
 ---
 ## Playground de Go
@@ -78,8 +99,7 @@ Para aprender Go podemos utilizar el Playground de Go, pero cuando empecemos a c
 ### Instalar VSCode y Extensiones
 - Go (Extensión)
 - Extensiones Opcionales
-    - Material Icon Theme
-    - Atom One Dark Theme
+    - Monokai Pro
     - Thunder Client
 ---
 ## Hola Mundo con Go
