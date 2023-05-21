@@ -1,4 +1,5 @@
 # Control de errores 
+
 1. [Introducción](#introducción)
 2. [Manejo de errores](#manejo-de-errores)
 3. [Ejemplo de Manejo de Errores](#ejemplo-de-manejo-de-errores)
@@ -10,6 +11,19 @@
 
 ---
 ## Introducción 
+Hay ocasiones en las que los programas que se escriben no se comportan de la manera esperada. A veces, hay factores externos que no se pueden controlar, como que otros procesos bloqueen un archivo o un intento de acceder a una dirección de memoria que ya no está disponible. Los errores son simplemente otro tipo de comportamiento que los programas pueden tener. Es mejor que se anticipe a esos errores para poder solucionar los problemas cuando se produzcan.
+
+En primer lugar, aprenderemos sobre el manejo de errores en Go. Veremos cómo utilizar la sintaxis if err != nil para verificar y manejar errores de una manera concisa y eficiente. También exploraremos las mejores prácticas para devolver y manejar errores de manera adecuada en nuestras funciones.
+
+A continuación, profundizaremos en el ejemplo de manejo de errores en Go. Mediante un escenario práctico, analizaremos cómo implementar el manejo de errores en una aplicación real. Exploraremos técnicas como el uso de variables de error, el registro de errores y la propagación adecuada de errores en diferentes capas de nuestra aplicación.
+
+Uno de los aspectos más interesantes del manejo de errores en Go es el uso de la declaración defer. Descubriremos cómo usar defer para asegurarnos de que ciertas operaciones se realicen antes de salir de una función, incluso en caso de error. Veremos ejemplos prácticos que demuestran cómo defer puede facilitar el manejo de tareas como la liberación de recursos o el cierre adecuado de archivos.
+
+Otro tema importante relacionado con el manejo de errores es el uso de panic y recover. Aprenderemos cómo utilizar estas dos funciones para manejar situaciones excepcionales y errores graves en nuestras aplicaciones. Exploraremos cómo panic puede ser utilizado para interrumpir el flujo normal del programa y cómo recover nos permite recuperarnos de dichos errores y continuar la ejecución de manera controlada.
+
+Finalmente, en el proyecto de esta sección, crearemos un gestor de contactos utilizando Go. A través de este proyecto, aplicaremos todos los conceptos que hemos aprendido sobre el manejo de errores en Go. Implementaremos una funcionalidad robusta para agregar, mostrar y almacenar contactos, asegurándonos de manejar los posibles errores que puedan ocurrir durante el proceso.
+
+¡Únete a esta sección del curso y domina el arte del manejo de errores en Go! Estarás preparado para crear aplicaciones confiables y resistentes que sepan manejar adecuadamente situaciones inesperadas.
 
 ---
 ## Manejo de errores 
@@ -375,6 +389,14 @@ El código proporcionado muestra cómo utilizar el paquete log en Go para rediri
 
 ---
 ## Proyecto de sección: Gestor de contactos
+Desarrolla una aplicación que permita a los usuarios guardar y administrar contactos en un archivo. Asegúrate de manejar los errores que puedan ocurrir al agregar y mostrar contactos.
+
+Este es un ejemplo básico de un gestor de contactos que utiliza archivos para almacenar los contactos en formato JSON. El programa ofrece las opciones de agregar un nuevo contacto, mostrar todos los contactos y salir. Los contactos se guardan en el archivo "contacts.json" y se cargan al inicio del programa.
+
+Ten en cuenta que este ejemplo solo aborda la funcionalidad básica del gestor de contactos y no incluye todas las validaciones de entrada y manejo de errores que podrías implementar. Puedes mejorar y expandir este código según tus necesidades y requisitos específicos.
+
+Recuerda crear el archivo "contacts.json" en el mismo directorio antes de ejecutar el programa, o asegúrate de tener permisos de escritura en el directorio para crearlo automáticamente.
+
 ~~~go
 package main
 
@@ -385,13 +407,15 @@ import (
 	"os"
 )
 
+// Estructura de contactos
 type Contact struct {
-	Name  string `json:"name"`
-	Email string `json:"email"`
-	Phone string `json:"phone"`
+	Name  string
+	Email string
+	Phone string
 }
 
 func main() {
+	// Slice de contactos
 	var contacts []Contact
 
 	// Cargar contactos existentes desde el archivo
@@ -399,14 +423,20 @@ func main() {
 	if err != nil {
 		fmt.Println("Error al cargar los contactos:", err)
 	}
+
+	// Crear instancia de fubio
 	reader := bufio.NewReader(os.Stdin)
+
 	for {
-
 		// Mostrar opciones al usuario
-		showOptions()
-
+		fmt.Print("==== GESTOR DE CONTACTOS ====\n",
+			"1. Agregar un contacto\n",
+			"2. Mostrar todos los contactos\n",
+			"3. Salir\n",
+			"Elige una opción: ")
 		// Leer la opción del usuario
-		option, err := reader.ReadString('\n')
+		var option int
+		_, err := fmt.Scanln(&option)
 		if err != nil {
 			fmt.Println("Error al leer la opción:", err)
 			return
@@ -414,15 +444,24 @@ func main() {
 
 		// Manejar la opción del usuario
 		switch option {
-		case "1\n":
-			// Agregar un contacto
-			contact := readContact()
-			contacts = append(contacts, contact)
-			err := saveContactsToFile(contacts)
-			if err != nil {
+		case 1:
+			// Ingresar y crear contacto
+			var c Contact
+			fmt.Print("Nombre: ")
+			c.Name, _ = reader.ReadString('\n')
+			fmt.Print("Email: ")
+			c.Email, _ = reader.ReadString('\n')
+			fmt.Print("Teléfono: ")
+			c.Phone, _ = reader.ReadString('\n')
+			// Agregar un contacto a Slice
+			contacts = append(contacts, c)
+
+			// Guardar en un archivo json
+			if err := saveContactsToFile(contacts); err != nil {
 				fmt.Println("Error al guardar el contacto:", err)
 			}
-		case "2\n":
+
+		case 2:
 			// Mostrar todos los contactos
 			fmt.Println("=======================================")
 			for index, contact := range contacts {
@@ -430,42 +469,33 @@ func main() {
 					index+1, contact.Name, contact.Email, contact.Phone)
 			}
 			fmt.Println("=======================================")
-		case "3\n":
+		case 3:
 			// Salir del programa
 			return
 		default:
 			fmt.Println("Opción no válida")
 		}
+
 	}
 }
 
-func showOptions() {
-	fmt.Println("==== GESTOR DE CONTACTOS ====")
-	fmt.Println("1. Agregar un contacto")
-	fmt.Println("2. Mostrar todos los contactos")
-	fmt.Println("3. Salir")
-	fmt.Print("Elige una opción: ")
-}
-
-func readContact() Contact {
-	reader := bufio.NewReader(os.Stdin)
-
-	fmt.Print("Nombre: ")
-	name, _ := reader.ReadString('\n')
-
-	fmt.Print("Email: ")
-	email, _ := reader.ReadString('\n')
-
-	fmt.Print("Teléfono: ")
-	phone, _ := reader.ReadString('\n')
-
-	return Contact{
-		Name:  name,
-		Email: email,
-		Phone: phone,
+// Guarda contatos en un archivo json
+func saveContactsToFile(contacts []Contact) error {
+	file, err := os.Create("contacts.json")
+	if err != nil {
+		return err
 	}
+	defer file.Close()
+
+	encoder := json.NewEncoder(file)
+	err = encoder.Encode(contacts)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
+// Carga contactos desde un archivo json
 func loadContactsFromFile(contacts *[]Contact) error {
 	file, err := os.Open("contacts.json")
 	if err != nil {
@@ -481,24 +511,20 @@ func loadContactsFromFile(contacts *[]Contact) error {
 
 	return nil
 }
-
-func saveContactsToFile(contacts []Contact) error {
-	file, err := os.Create("contacts.json")
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	encoder := json.NewEncoder(file)
-	err = encoder.Encode(contacts)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 ~~~
 
 ---
-## Resumen 
+## Resumen
+En la sección del curso de Go dedicada al manejo de errores, exploramos diferentes aspectos del manejo de errores en Go y cómo aplicarlos de manera efectiva en nuestras aplicaciones.
+
+Comenzamos aprendiendo sobre el manejo de errores en Go, donde vimos cómo utilizar la sintaxis if err != nil para verificar y manejar errores de forma concisa y eficiente. También exploramos las mejores prácticas para devolver y manejar errores adecuadamente en nuestras funciones.
+
+Luego profundizamos en un ejemplo práctico de manejo de errores en Go, donde analizamos cómo implementar el manejo de errores en una aplicación real. Exploramos técnicas como el uso de variables de error, el registro de errores y la propagación adecuada de errores en diferentes capas de nuestra aplicación.
+
+Uno de los aspectos más interesantes del manejo de errores en Go es el uso de la declaración defer. Aprendimos cómo usar defer para asegurarnos de que ciertas operaciones se realicen antes de salir de una función, incluso en caso de error. Vimos ejemplos prácticos que demostraron cómo defer puede facilitar el manejo de tareas como la liberación de recursos o el cierre adecuado de archivos.
+
+También exploramos el uso de panic y recover. Aprendimos cómo utilizar estas dos funciones para manejar situaciones excepcionales y errores graves en nuestras aplicaciones. Vimos cómo panic puede interrumpir el flujo normal del programa y cómo recover nos permite recuperarnos de dichos errores y continuar la ejecución de manera controlada.
+
+En el proyecto de esta sección, creamos un gestor de contactos utilizando Go. Aplicamos todos los conceptos que aprendimos sobre el manejo de errores en Go para implementar una funcionalidad robusta para agregar, mostrar y almacenar contactos, asegurándonos de manejar los posibles errores que pudieran ocurrir durante el proceso.
+
+Concluimos esta sección con una sólida comprensión del manejo de errores en Go. Ahora estamos preparados para crear aplicaciones confiables y resistentes que manejen adecuadamente situaciones inesperadas. 
