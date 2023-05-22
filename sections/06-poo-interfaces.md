@@ -1,10 +1,30 @@
-# Programación orientada a objetos en Go 
-1. [POO en Go](#poo-en-go) 
-2. [Estructuras y tipos](#estructuras-y-tipos) 
+# POO e Interfaces 
+1. [Introducción](#introducción)
+2. [POO en Go](#poo-en-go) 
 3. [Métodos y cosntructores](#métodos-y-cosntructores) 
 4. [Encapsulamientos](#encapsulamientos)
 5. [Composicion](#composicion)
 7. [Polimorfismo](#polimorfismo)
+8. [Interfaces](#interfaces)
+9. [Resumen](#resumen)
+
+---
+## Introducción
+En esta sección del curso, nos adentraremos en la programación orientada a objetos (POO) y las interfaces en el lenguaje de programación Go. La POO es un paradigma de programación que se basa en la organización del código en objetos, que son instancias de clases con propiedades y métodos. Por otro lado, las interfaces en Go permiten definir conjuntos de métodos que deben ser implementados por otros tipos de datos.
+
+Durante esta sección, exploraremos los siguientes temas clave de la POO en Go:
+
+- Métodos y constructores: Los métodos en Go son funciones asociadas a un tipo de datos en particular. A través de los métodos, podemos definir comportamientos y operaciones específicas para los objetos. Además, aprenderemos cómo crear constructores para inicializar los objetos de manera conveniente.
+
+- Encapsulamiento: El encapsulamiento se refiere a la ocultación de los detalles internos de una entidad y la exposición de una interfaz pública para interactuar con ella. Aprenderemos cómo utilizar la convención de nomenclatura de mayúsculas/minúsculas para lograr el encapsulamiento en Go.
+
+- Composición: La composición es un concepto en el que los objetos se construyen combinando otros objetos más pequeños. Exploraremos cómo utilizar la composición en Go para crear relaciones entre objetos y reutilizar código de manera eficiente.
+
+- Polimorfismo: El polimorfismo es la capacidad de un objeto para tomar muchas formas diferentes y responder a las mismas operaciones de manera diferente. Aprenderemos cómo aplicar el polimorfismo en Go utilizando interfaces y tipos de datos que implementan dichas interfaces.
+
+- Interfaces: Las interfaces en Go permiten definir conjuntos de métodos que deben ser implementados por otros tipos de datos. Exploraremos cómo declarar e implementar interfaces en Go y cómo utilizarlas para lograr una mayor flexibilidad y reutilización de código.
+
+A medida que avancemos en esta sección, obtendrás un sólido conocimiento de la POO en Go y cómo utilizar las interfaces para lograr una programación más modular y flexible. Estos conceptos te permitirán escribir código más estructurado y escalable en Go. ¡Comencemos a explorar la programación orientada a objetos y las interfaces en Go!
 
 ---
 ## POO en Go 
@@ -16,16 +36,16 @@ A continuación, se describen algunas características de POO en Go:
 
 - **Métodos**: los métodos en Go son funciones que operan en una estructura en particular. Se utilizan para agregar comportamiento a las estructuras y para definir operaciones específicas para un objeto.
 
-- **Interfaces**: las interfaces en Go son tipos abstractos que definen un conjunto de métodos. Permiten que diferentes tipos implementen el mismo conjunto de métodos, lo que permite la polimorfismo y la abstracción.
+- **Encapsulamiento**: aunque Go no tiene modificadores de acceso públicos o privados, se puede lograr el encapsulamiento utilizando convenciones de nomenclatura de variables y estructuras.
 
 - **Composición**: Go utiliza la composición para modelar relaciones entre objetos. Esto implica la creación de una estructura que contiene otras estructuras.
 
-- **Encapsulamiento**: aunque Go no tiene modificadores de acceso públicos o privados, se puede lograr el encapsulamiento utilizando convenciones de nomenclatura de variables y estructuras.
+- **Interfaces**: las interfaces en Go son tipos abstractos que definen un conjunto de métodos. Permiten que diferentes tipos implementen el mismo conjunto de métodos, lo que permite la polimorfismo y la abstracción.
 
 En resumen, aunque Go no es un lenguaje orientado a objetos puro, puede utilizarse para escribir código orientado a objetos utilizando estructuras, métodos, interfaces, composición y encapsulamiento. La programación orientada a objetos en Go es útil para modelar objetos del mundo real y para crear código modular y reutilizable.
 
 ---
-## Estructuras y tipos 
+## Métodos y cosntructores
 En Go, en lugar de utilizar el concepto de clases y objetos como en otros lenguajes orientados a objetos, se utilizan estructuras y tipos para representar entidades. Las estructuras en Go son similares a las clases en otros lenguajes de programación orientados a objetos, pero con algunas diferencias.
 
 Una estructura en Go es un tipo de datos que contiene un conjunto de campos, cada uno con su propio tipo de datos. Los campos pueden ser de cualquier tipo de datos, incluyendo otros tipos de estructuras. Las estructuras en Go se definen utilizando la palabra clave `type`, seguida del nombre de la estructura y la definición de los campos que contendrá.
@@ -57,7 +77,6 @@ var myBook Book = Book{
 En este ejemplo, se crea una variable llamada `myBook` del tipo `Book`, y se inicializa con los valores de título, autor y número de páginas utilizando la sintaxis de llaves y los nombres de los campos.
 
 ---
-## Métodos y cosntructores 
 ### Métodos
 En Go, los métodos son funciones que operan en un tipo específico, como una estructura. Los métodos se definen utilizando la palabra clave `func`, seguida del nombre del método, los argumentos y el tipo al que se aplica el método.
 
@@ -214,3 +233,101 @@ func main() {
 En este ejemplo, hemos definido una interfaz Printable que tiene un solo método PrintInfo(). Ambas estructuras Book y Textbook implementan esta interfaz, ya que ambas tienen el método PrintInfo(). Luego hemos creado una función Print() que toma un parámetro de tipo Printable y llama al método PrintInfo() en el objeto proporcionado. Finalmente, hemos creado un objeto book de tipo Book y un objeto textbook de tipo Textbook, y los hemos pasado como argumentos a la función Print().
 
 Al compilar y ejecutar este código, podemos ver que ambos objetos son manejados correctamente por la función Print(), lo que demuestra el polimorfismo.
+
+---
+## Interfaces 
+En Go, las interfaces son un mecanismo poderoso para definir conjuntos de métodos que deben ser implementados por otros tipos de datos. Una interfaz en Go define un contrato que especifica qué métodos deben ser implementados por un tipo determinado.
+
+La declaración de una interfaz en Go sigue la siguiente sintaxis:
+~~~go
+type NombreInterfaz interface {
+    Metodo1()
+    Metodo2()
+    // ...
+}
+~~~
+
+Donde NombreInterfaz es el nombre que le damos a nuestra interfaz y Metodo1(), Metodo2(), etc., son los métodos que deben ser implementados por cualquier tipo que quiera cumplir con esa interfaz.
+
+Para implementar una interfaz en Go, simplemente necesitamos que un tipo de datos implemente todos los métodos definidos en la interfaz. No es necesario declarar explícitamente que un tipo de datos implementa una interfaz; Go infiere la implementación en función de la estructura del código.
+
+Veamos un ejemplo de cómo se podría implementar una interfaz en Go:
+~~~go
+package main
+
+import "fmt"
+
+// Implementación de interfaces
+type Animal interface {
+	Sonido()
+}
+
+// Estructura de perro y sus métodos
+type Perro struct {
+	Nombre string
+}
+
+func (p Perro) Sonido() {
+	fmt.Println(p.Nombre + " hace guau guau")
+}
+
+// Estructura de gato y sus métodos
+type Gato struct {
+	Nombre string
+}
+
+func (g Gato) Sonido() {
+	fmt.Println(g.Nombre + " hace miau")
+}
+
+// Función para imprimer sonido
+func HacerSonido(animal Animal) {
+	animal.Sonido()
+}
+
+func main() {
+	miPerro := Perro{Nombre: "Max"}
+	miGato := Gato{Nombre: "Tom"}
+
+	HacerSonido(miPerro) // Imprime "Max hace guau guau"
+	HacerSonido(miGato)  // Imprime "Tom hace miau"
+}
+
+~~~
+
+Las interfaces en Go son útiles para lograr una mayor flexibilidad y reutilización de código. Al programar con interfaces, podemos escribir funciones genéricas que acepten cualquier tipo que cumpla con la interfaz, lo que nos permite trabajar con diferentes tipos de datos sin preocuparnos por su implementación interna.
+
+Es importante destacar que en Go, las interfaces son implícitas, lo que significa que un tipo de datos puede implementar una interfaz sin necesidad de declararlo explícitamente. Esto promueve una mayor flexibilidad y permite una programación más ágil.
+
+~~~go
+func main() {
+	// Crear una lista de animales
+	animales := []Animal{
+		Perro{Nombre: "Max"},
+		Gato{Nombre: "Tom"},
+		Perro{Nombre: "Buddy"},
+		Gato{Nombre: "Luna"},
+	}
+
+	// Iterar sobre la lista de animales y llamar al método Sonido()
+	for _, animal := range animales {
+		animal.Sonido()
+	}
+}
+~~~
+
+En el ciclo for, iteramos sobre la lista de animales y llamamos al método Sonido() para cada animal. Como ambos tipos (Perro y Gato) implementan el método Sonido(), podemos llamar al método de manera genérica sin preocuparnos por el tipo específico del animal.
+
+Este ejemplo ilustra cómo las interfaces en Go nos permiten trabajar con diferentes tipos de datos de manera uniforme, lo que facilita la escritura de código genérico y reutilizable. Además, si en el futuro agregamos más tipos de animales que implementen el método Sonido(), simplemente los agregamos a la lista de animales y el código existente seguirá funcionando sin modificaciones.
+
+---
+## Resumen
+En esta sección del curso, nos adentramos en la programación orientada a objetos (POO) y las interfaces en el lenguaje de programación Go. Exploramos conceptos clave como métodos y constructores, encapsulamiento, composición, polimorfismo e interfaces.
+
+Aprendimos cómo los métodos en Go son funciones asociadas a un tipo de datos en particular, lo que nos permite definir comportamientos y operaciones específicas para los objetos. También vimos cómo crear constructores para inicializar los objetos de manera conveniente.
+
+Además, exploramos el encapsulamiento en Go, que consiste en ocultar los detalles internos de una entidad y exponer una interfaz pública para interactuar con ella. Utilizamos la convención de nomenclatura de mayúsculas/minúsculas para lograr el encapsulamiento de manera efectiva.
+
+En cuanto a la composición, vimos cómo utilizarla en Go para crear relaciones entre objetos y reutilizar código de manera eficiente. También exploramos el concepto de polimorfismo, que nos permite que un objeto tome diferentes formas y responda a las mismas operaciones de manera diferente. Utilizamos interfaces en Go para lograr el polimorfismo, definiendo conjuntos de métodos que deben ser implementados por otros tipos de datos.
+
+A lo largo de esta sección, adquirimos un sólido conocimiento de la POO en Go y cómo utilizar las interfaces para lograr una programación más modular y flexible. Estos conceptos nos permiten escribir código más estructurado y escalable en Go. ¡Hemos explorado con éxito la programación orientada a objetos y las interfaces en Go!
