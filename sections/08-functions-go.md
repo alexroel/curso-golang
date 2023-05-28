@@ -1,11 +1,30 @@
 # Funciones avanzadas
 
-1. [Funciones variádicas](#Funciones-variádicas)
-2. [Funciones recursivas](#Funciones-recursivas) 
-3. [Funciones anónimas](#Funciones-anónimas)
-4. [Funciones de orden superior](#funciones-de-orden-superior)
-5. [Closures en Go](#closures-en-go)
-6. [Funciones defer, Panic y Recover](#funciones-defer-panic-y-recover) 
+1. [Introducción](#introducción)
+2. [Funciones variádicas](#Funciones-variádicas)
+3. [Funciones recursivas](#Funciones-recursivas) 
+4. [Funciones anónimas](#Funciones-anónimas)
+5. [Funciones de orden superior](#funciones-de-orden-superior)
+6. [Closures en Go](#closures-en-go)
+7. [Resumen](#resumen)
+
+---
+## Introducción
+¡Bienvenidos a la sección de Funciones Avanzadas del curso de Go!
+
+En esta sección, exploraremos una serie de conceptos poderosos que te permitirán llevar tus habilidades de programación a un nivel superior. Nos adentraremos en el mundo de las funciones avanzadas en Go y descubriremos cómo pueden ayudarnos a escribir código más flexible, modular y elegante.
+
+Comenzaremos por aprender sobre las funciones variádicas, que nos permiten definir funciones que pueden aceptar un número variable de argumentos. Esta característica es especialmente útil cuando no sabemos de antemano cuántos argumentos necesitaremos pasar a una función.
+
+Continuaremos con las funciones recursivas, que son funciones que se llaman a sí mismas. Aprenderemos cómo utilizar la recursión de manera efectiva para resolver problemas complejos y cómo evitar caer en trampas comunes, como la recursión infinita.
+
+Luego, exploraremos las funciones anónimas, también conocidas como closures. Estas son funciones sin nombre que pueden ser asignadas a variables o pasadas como argumentos a otras funciones. Descubriremos cómo las funciones anónimas nos permiten escribir código más conciso y expresivo.
+
+A continuación, profundizaremos en las funciones de orden superior, que son funciones que pueden tomar otras funciones como argumentos o devolver funciones como resultados. Exploraremos cómo utilizar estas funciones para implementar patrones comunes de programación, como el patrón de estrategia o el patrón de iterador.
+
+Por último, abordaremos el tema de los closures en Go. Un closure es una función que captura y mantiene referencias a variables locales dentro de su ámbito. Aprenderemos cómo los closures nos permiten crear funciones que retienen el estado incluso después de que la función original haya terminado de ejecutarse.
+
+A lo largo de esta sección, pondremos en práctica los conceptos aprendidos mediante ejemplos y ejercicios que te desafiarán a aplicarlos de manera creativa. Al finalizar esta sección, estarás equipado con un conjunto de herramientas poderosas que ampliarán tus capacidades como programador en Go. ¡Comencemos!
 
 ---
 ## Funciones variádicas
@@ -36,6 +55,38 @@ fmt.Println(suma(4, 5, 6, 7, 8)) // Output: 30
 ~~~
 
 En este ejemplo, la función suma se llama con dos conjuntos diferentes de argumentos de tipo int. En ambos casos, la función devuelve la suma de todos los argumentos.
+
+~~~go
+func suma(nombre string, nums ...int) int {
+    total := 0
+    for _, num := range nums {
+        total += num
+    }
+    fmt.Printf("Hola %s, la suma es: %d\n", nombre, total)
+    return total
+}
+~~~
+
+En esta función, se ha agregado un parámetro nombre de tipo string al principio de la lista de parámetros. Luego, se realiza la suma de los números como antes, pero también se imprime un mensaje que incluye el nombre y la suma.
+
+### Funciones variádicas también pueden aceptar diferentes tipos de datos
+En Go, las funciones variádicas también pueden aceptar diferentes tipos de datos. A diferencia de otros lenguajes de programación, como C, C++ o Java, Go permite especificar un tipo de datos vacío (interface{}) como el tipo de parámetro variádico. Esto significa que una función variádica en Go puede aceptar cualquier tipo de argumento.
+
+~~~go
+func imprimirDatos(datos ...interface{}) {
+	for _, dato := range datos {
+		fmt.Printf("%T - %v\n", dato, dato)
+	}
+}
+~~~
+
+En este caso, la función `imprimirDatos` puede recibir cualquier cantidad de argumentos de cualquier tipo. Dentro de la función, cada argumento se trata como un valor de tipo `interface{}`, lo que permite imprimir o realizar cualquier otra operación genérica con ellos.
+
+~~~go
+imprimirDatos("Hola", 42, true, 3.14)
+~~~
+
+En este ejemplo, se pasan una cadena de texto, un entero, un booleano y un número de punto flotante a la función imprimirDatos.
 
 ---
 ## Funciones recursivas
@@ -180,67 +231,18 @@ En este ejemplo, se llama a incrementer para obtener la función anónima que ma
 En resumen, las clausuras son una característica poderosa de Go que permiten definir funciones anidadas que tienen acceso a las variables locales de la función padre. Se pueden utilizar para implementar funciones que mantienen un estado interno o para definir funciones genéricas que aceptan funciones como argumentos y las adaptan a un contexto específico.
 
 ---
-## Funciones defer, Panic y Recover 
-En Go, las funciones defer, panic y recover se utilizan juntas para manejar errores y controlar el flujo de ejecución en programas.
+## Resumen
+En la sección de Funciones Avanzadas del curso de Go, exploramos una variedad de conceptos poderosos que nos permiten llevar nuestras habilidades de programación a un nivel superior.
 
-### Defer 
-La función defer se utiliza para programar una función que se ejecutará justo antes de que una función que la contiene devuelva su valor. Esto se utiliza a menudo para asegurarse de que ciertas operaciones se realicen antes de que una función termine, independientemente de si la función se termina normalmente o por un error. Por ejemplo:
+Comenzamos aprendiendo sobre las funciones variádicas, que nos permiten definir funciones capaces de aceptar un número variable de argumentos. Esta característica resulta especialmente útil cuando no conocemos de antemano cuántos argumentos necesitaremos pasar a una función.
 
-~~~go
-func main() {
-    defer fmt.Println("Adiós!")
-    fmt.Println("Hola!")
-}
-~~~
+Continuamos con las funciones recursivas, que son funciones que se llaman a sí mismas. Aprendimos a utilizar la recursión de manera efectiva para resolver problemas complejos, evitando trampas comunes como la recursión infinita.
 
-En este ejemplo, la función fmt.Println("Adiós!") se ejecutará justo antes de que la función main() termine, incluso si la ejecución se termina normalmente o por un error.
+Posteriormente, exploramos las funciones anónimas, también conocidas como closures. Estas son funciones sin nombre que pueden asignarse a variables o pasarse como argumentos a otras funciones. Descubrimos cómo las funciones anónimas nos permiten escribir código más conciso y expresivo.
 
-### Panic
-La función panic se utiliza para detener la ejecución normal de un programa y lanzar un error. Esto se utiliza cuando ocurre algo inesperado o cuando se encuentra un error que no se puede manejar en la función actual. Por ejemplo:
+Luego nos sumergimos en las funciones de orden superior, que son funciones capaces de tomar otras funciones como argumentos o devolver funciones como resultados. Aprendimos a utilizar estas funciones para implementar patrones de programación comunes, como el patrón de estrategia o el patrón de iterador.
 
-~~~go
-func dividir(a, b int) int {
-    if b == 0 {
-        panic("No se puede dividir por cero!")
-    }
-    return a / b
-}
+Por último, abordamos el tema de los closures en Go. Un closure es una función que captura y mantiene referencias a variables locales dentro de su ámbito. Aprendimos cómo los closures nos permiten crear funciones que retienen el estado incluso después de que la función original haya terminado de ejecutarse.
 
-func main() {
-    resultado := dividir(10, 0)
-    fmt.Println(resultado)
-}
-~~~
+A lo largo de la sección, pusimos en práctica los conceptos aprendidos mediante ejemplos y ejercicios que nos desafiaron a aplicarlos de manera creativa. Al finalizar, adquirimos un conjunto de herramientas poderosas que ampliaron nuestras capacidades como programadores en Go.
 
-En este ejemplo, si el segundo argumento de la función dividir() es cero, la función lanzará un error con el mensaje "No se puede dividir por cero!" y detendrá la ejecución del programa.
-
-### Recover
-La función recover se utiliza para manejar errores lanzados por la función panic y controlar el flujo de ejecución en el programa. La función recover debe utilizarse dentro de una función defer para poder recuperar el error y controlar su manejo. Por ejemplo:
-
-~~~go
-func dividir(a, b int) (resultado int, err error) {
-    defer func() {
-        if p := recover(); p != nil {
-            err = fmt.Errorf("Error recuperado: %v", p)
-        }
-    }()
-    if b == 0 {
-        panic("No se puede dividir por cero!")
-    }
-    resultado = a / b
-    return resultado, nil
-}
-
-func main() {
-    resultado, err := dividir(10, 0)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Println(resultado)
-}
-
-~~~
-En este ejemplo, si el segundo argumento de la función dividir() es cero, la función lanzará un error con el mensaje "No se puede dividir por cero!" y detendrá la ejecución del programa. La función recover se utiliza dentro de una función defer para recuperar el error lanzado por la función panic y asignarlo a la variable err. Si se produce un error, el valor de err será distinto de nil y se imprimirá un mensaje de error en la salida estándar. Si no se produce un error, se imprimirá el resultado de la división.
-
-En resumen, las funciones defer, panic y recover se utilizan juntas en Go para manejar errores y controlar el flujo de ejecución en programas. La función defer se utiliza para programar una función que se ejecutará justo antes de que una función que la contiene devuelva su valor, mientras que la función panic se utiliza para detener la
