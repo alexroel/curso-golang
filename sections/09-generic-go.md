@@ -160,7 +160,7 @@ func main() {
 
 	fmt.Println(Sum(100, 456, 789, 456, 452))
 	fmt.Println(Sum[float32](4.5, 5.5, 7.5))
-	fmt.Println(Sum(num1 + num2))
+	fmt.Println(Sum(num1, num2))
 }
 ~~~
 
@@ -190,7 +190,7 @@ func main() {
 
 	fmt.Println(Sum(100, 456, 789, 456, 452))
 	fmt.Println(Sum[float32](4.5, 5.5, 7.5))
-	fmt.Println(Sum(num1 + num2))
+	fmt.Println(Sum(num1, num2))
 }
 ~~~
 
