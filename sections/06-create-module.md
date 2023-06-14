@@ -5,10 +5,11 @@
 3. [Llamar a tu código desde otro módulo](#llamar-a-tu-código-desde-otro-módulo)
 4. [Devolver y manejar un error](#devolver-y-manejar-un-error)
 5. [Devolver un saludo aleatorio](#devolver-un-saludo-aleatorio)
-6. [Agregar una prueba](#agregar-una-prueba)
-7. [Compilar e instalar la aplicación](#compilar-e-instalar-la-aplicación)
-8. [Desplegar a GitHub](#desplegar-a-github)
-9. [Resumen](#resumen)
+6. [Devolver saludos para varias personas](#devolver-saludos-para-varias-personas)
+7. [Agregar una prueba](#agregar-una-prueba)
+8. [Compilar e instalar la aplicación](#compilar-e-instalar-la-aplicación)
+9. [Desplegar a GitHub](#desplegar-a-github)
+10. [Resumen](#resumen)
 
 ---
 ## Introducción 
@@ -405,7 +406,7 @@ $ go run .
 A continuación, utilizarás un slice para saludar a varias personas.
 
 ---
-### Devolver saludos para varias personas
+## Devolver saludos para varias personas
 En los últimos cambios que harás en el código de tu módulo, agregarás soporte para obtener saludos para múltiples personas en una sola solicitud. En otras palabras, manejarás una entrada de múltiples valores y luego emparejarás esos valores de entrada con una salida de múltiples valores. Para hacer esto, deberás pasar un conjunto de nombres a una función que pueda devolver un saludo para cada uno de ellos.
 
 Sin embargo, hay un problema. Cambiar el parámetro de la función Hello de un solo nombre a un conjunto de nombres cambiaría la firma de la función. Si ya hubieras publicado el módulo example.com/greetings y los usuarios ya hubieran escrito código que llama a Hello, ese cambio rompería sus programas.
