@@ -89,17 +89,17 @@ import "github.com/gin-gonic/gin"
 
 func main() {
     // Crea una nueva instancia de Gin
-    r := gin.Default()
+    router := gin.Default()
 
     // Define la ruta GET para el endpoint "/"
-    r.GET("/", func(c *gin.Context) {
+    router.GET("/", func(c *gin.Context) {
         c.JSON(200, gin.H{
             "message": "¡Hola Mundo!",
         })
     })
 
     // Inicia el servidor en el puerto 8080
-    r.Run(":8080")
+    router.Run("localhost:8080")
 }
 ~~~
 Ahora, puedes acceder a `http://localhost:8080` en tu navegador o utilizar herramientas como cURL o Postman para hacer una solicitud GET a la ruta "/" y verás la respuesta "¡Hola Mundo!" en formato JSON.
