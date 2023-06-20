@@ -462,6 +462,46 @@ Si el título es válido, se devolverá junto con un valor de error nulo. Si el 
 
 Coloquemos una llamada a getTitle en cada uno de los controladores:
 
+~~~go
+func viewHandler(w http.ResponseWriter, r *http.Request) {
+    title, err := getTitle(w, r)
+    if err != nil {
+        return
+    }
+    p, err := loadPage(title)
+    if err != nil {
+        http.Redirect(w, r, "/edit/"+title, http.StatusFound)
+        return
+    }
+    renderTemplate(w, "view", p)
+}
+func editHandler(w http.ResponseWriter, r *http.Request) {
+    title, err := getTitle(w, r)
+    if err != nil {
+        return
+    }
+    p, err := loadPage(title)
+    if err != nil {
+        p = &Page{Title: title}
+    }
+    renderTemplate(w, "edit", p)
+}
+func saveHandler(w http.ResponseWriter, r *http.Request) {
+    title, err := getTitle(w, r)
+    if err != nil {
+        return
+    }
+    body := r.FormValue("body")
+    p := &Page{Title: title, Body: []byte(body)}
+    err = p.save()
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    http.Redirect(w, r, "/view/"+title, http.StatusFound)
+}
+~~~
+
 ---
 ## Presentación de literales de funciones y clausuras
 La captura de la condición de error en cada controlador introduce mucho código repetido. ¿Qué pasaría si pudiéramos envolver cada uno de los controladores en una función que haga esta validación y verificación de errores? Los literales de función de Go proporcionan un medio poderoso de abstraer la funcionalidad que puede ayudarnos aquí.
@@ -513,6 +553,34 @@ func main() {
 }
 ~~~
 Finalmente, eliminamos las llamadas a getTitle de las funciones controladoras, lo que las simplifica considerablemente:
+
+~~~go
+func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
+    p, err := loadPage(title)
+    if err != nil {
+        http.Redirect(w, r, "/edit/"+title, http.StatusFound)
+        return
+    }
+    renderTemplate(w, "view", p)
+}
+func editHandler(w http.ResponseWriter, r *http.Request, title string) {
+    p, err := loadPage(title)
+    if err != nil {
+        p = &Page{Title: title}
+    }
+    renderTemplate(w, "edit", p)
+}
+func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
+    body := r.FormValue("body")
+    p := &Page{Title: title, Body: []byte(body)}
+    err := p.save()
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    http.Redirect(w, r, "/view/"+title, http.StatusFound)
+}
+~~~
 
 ---
 ## Resumen 
