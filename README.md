@@ -14,11 +14,13 @@
 3. [Control de flujos](sections/03-flow-control.md)
 4. [Estructura de datos](sections/04-data-structure.md)
 5. [Control de errores](sections/05-error-handling.md)
-6. [POO e Interfaces](sections/06-poo-interfaces.md)
-7. [Concurrencia](sections/07-concurrencia.md)
-8. [Funciones avanzadas](sections/08-functions-go.md)
-9. [Genericos en go](sections/09-generic-go.md)
-10. [Aplicación web sencilla](sections/10-project-rpsgame.md)
+6. [Crear un módulo](sections/06-create-module.md)
+7. [POO e Interfaces](sections/06-poo-interfaces.md)
+8. [Concurrencia](sections/07-concurrencia.md)
+9. [Funciones avanzadas](sections/08-functions-go.md)
+10. [Genericos en go](sections/09-generic-go.md)
+11. [API RESTful con Go y Gin](sections/11-api-rest-gin.md)
+12. [Escribir aplicaciones web](sections/12-writing-web-aplications.md)
 
 ## Descripción del curso 
 El curso "Aprende Go: La guía completa para dominar Golang" te llevará desde los primeros pasos hasta convertirte en un experto en el lenguaje de programación Go. A lo largo del curso, abarcarás una amplia gama de temas, incluyendo el uso de variables y tipos de datos, el control de flujos, las estructuras de datos, el control de errores, la programación orientada a objetos (POO) y las interfaces.
